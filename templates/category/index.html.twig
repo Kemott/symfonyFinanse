@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Lista kategorii{% endblock %}
+
+{% block page_title %}
+    Kategorie
+{% endblock %}
+
+{% block page_subtitle %}
+    Lista kategorii
+{% endblock %}
+
+{% block page_content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Kategoria nadrzędna</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td>{% if category.parent is not empty %}{{ category.parent.name }}{% else %}Brak{% endif %}</td>
+                <td>
+                    <a href="{{ path('category_show', {'id': category.id}) }}">Szczegóły</a>
+                    <a href="{{ path('category_edit', {'id': category.id}) }}">Edycja</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Nie znaleziono kategorii</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('category_new') }}">Dodaj nową kategorię</a>
+{% endblock %}

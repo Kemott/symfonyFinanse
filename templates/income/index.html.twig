@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Lista przychodów{% endblock %}
+
+{% block page_title %}
+    Przychody
+{% endblock %}
+
+{% block page_subtitle %}
+    Lista przychodów
+{% endblock %}
+
+{% block page_content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Data przychodu</th>
+                <th>Opis</th>
+                <th>Kategoria</th>
+                <th>Kwota</th>
+                <th>Konto</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for income in incomes %}
+            <tr>
+                <td>{{ income.incomeDate ? income.incomeDate|date('Y-m-d') : '' }}</td>
+                <td>{{ income.description }}</td>
+                <td>{{ income.category.name }}</td>
+                <td>{{ income.amount }} zł</td>
+                <td>{{ income.account.description }}</td>
+                <td>
+                    <a href="{{ path('income_show', {'id': income.id}) }}">Szczegóły</a>
+                    <a href="{{ path('income_edit', {'id': income.id}) }}">Edytuj</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Nie znaleziono przychodów </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('income_new') }}">Dodaj nowy przychód</a>
+{% endblock %}

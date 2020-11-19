@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Nowe konto{% endblock %}
+
+{% block page_title %}
+    Konta
+{% endblock %}
+
+{% block page_subtitle %}
+    Dodawanie nowego konta
+{% endblock %}
+
+{% block page_content %}
+
+    {{ include('account/_form.html.twig') }}
+
+    <a href="{{ path('account_index') }}">Powrót do listy</a>
+{% endblock %}

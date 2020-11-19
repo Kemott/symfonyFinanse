@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Dodawanie kosztu{% endblock %}
+
+{% block page_title %}
+    Koszty
+{% endblock %}
+
+{% block page_subtitle %}
+    Dodawanie kosztu
+{% endblock %}
+
+{% block page_content %}
+    {{ include('outcome/_form.html.twig') }}
+
+    <a href="{{ path('outcome_index') }}">Powrót do listy</a>
+{% endblock %}

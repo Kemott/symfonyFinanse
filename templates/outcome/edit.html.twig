@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Edycja kosztu{% endblock %}
+
+{% block page_title %}
+    Koszty
+{% endblock %}
+
+{% block page_subtitle %}
+    Edycja kosztu
+{% endblock %}
+
+{% block page_content %}
+    {{ form_start(form) }}
+        {{ form_label(form.amount) }}
+        {{ form_errors(form.amount) }}
+        {{ form_widget(form.amount, {'attr': {'disabled': 'disabled'}})}}
+        {{ form_help(form.amount) }}
+
+        {{ form_label(form.account) }}
+        {{ form_errors(form.account) }}
+        {{ form_widget(form.account, {'attr': {'disabled': 'disabled'}})}}
+        {{ form_help(form.account) }}
+    {{ form_end(form) }}
+
+    <a href="{{ path('outcome_index') }}">Powrót do listy</a>
+
+    {{ include('outcome/_delete_form.html.twig') }}
+{% endblock %}

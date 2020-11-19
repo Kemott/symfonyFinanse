@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Lista kosztów{% endblock %}
+
+{% block page_title %}
+    Koszty
+{% endblock %}
+
+{% block page_subtitle %}
+    Lista kosztów
+{% endblock %}
+
+{% block page_content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Data kosztu</th>
+                <th>Opis</th>
+                <th>Ilość</th>
+                <th>Kategoria</th>
+                <th>Konto</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for outcome in outcomes %}
+            <tr>
+                <td>{{ outcome.outcomeDate ? outcome.outcomeDate|date('Y-m-d') : '' }}</td>
+                <td>{{ outcome.description }}</td>
+                <td>{{ outcome.amount }} zł</td>
+                <td>{{ outcome.category.name }}</td>
+                <td>{{ outcome.account.description }}</td>
+                <td>
+                    <a href="{{ path('outcome_show', {'id': outcome.id}) }}">Szczegóły</a>
+                    <a href="{{ path('outcome_edit', {'id': outcome.id}) }}">Edycja</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Nie znaleziono kosztów</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('outcome_new') }}">Dodaj koszt</a>
+{% endblock %}

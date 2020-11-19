@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Szczegóły przychodu{% endblock %}
+
+{% block page_title %}
+    Przychody
+{% endblock %}
+
+{% block page_subtitle %}
+    Szczegóły przychodu
+{% endblock %}
+
+{% block page_content %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Data przychodu</th>
+                <td>{{ income.incomeDate ? income.incomeDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Opis</th>
+                <td>{{ income.description }}</td>
+            </tr>
+            <tr>
+                <th>Ilość</th>
+                <td>{{ income.amount }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('income_index') }}">Powrót do listy</a>
+
+    <a href="{{ path('income_edit', {'id': income.id}) }}">Edycja</a>
+
+    {{ include('income/_delete_form.html.twig') }}
+{% endblock %}

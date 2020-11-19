@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Lista kont{% endblock %}
+
+{% block page_title %}
+    Konta
+{% endblock %}
+
+{% block page_subtitle %}
+    Lista kont
+{% endblock %}
+
+{% block page_content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Opis</th>
+                <th>Bank</th>
+                <th>Numer konta w banku</th>
+                <th>Kwota na koncie</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td>{{ account.description }}</td>
+                <td>{{ account.bank }}</td>
+                <td>{{ account.accountNumber }}</td>
+                <td>{{ account.amount }} zł</td>
+                <td>
+                    <a href="{{ path('account_show', {'id': account.id}) }}">Szczegóły</a>
+                    <a href="{{ path('account_edit', {'id': account.id}) }}">Edytuj</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Nie znaleziono kont</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('account_new') }}">Dodaj nowe</a>
+{% endblock %}

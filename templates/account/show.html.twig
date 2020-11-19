@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Szczegóły konta{% endblock %}
+
+{% block page_title %}
+    Konta
+{% endblock %}
+
+{% block page_subtitle %}
+    Szczegóły konta
+{% endblock %}
+
+{% block page_content %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Opis</th>
+                <td>{{ account.description }}</td>
+            </tr>
+            <tr>
+                <th>Bank</th>
+                <td>{{ account.bank }}</td>
+            </tr>
+            <tr>
+                <th>Numer konta</th>
+                <td>{{ account.accountNumber }}</td>
+            </tr>
+            <tr>
+                <th>Suma na koncie</th>
+                <td>{{ account.amount }} zł</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('account_index') }}">Powrót do listy</a>
+
+    <a href="{{ path('account_edit', {'id': account.id}) }}">Edycja</a>
+
+    {{ include('account/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,12 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% extends '@AdminLTE/layout/default-layout.html.twig' %}
+
+{% block logo_large %}
+Domowe finanse
+{% endblock %}
+
+{% block logo_mini %}
+DF
+{% endblock %}
+
+{% block title %}
+    {% block subtitle %}Home{% endblock %} | Domowe Finanse
+{% endblock %}
+
+{% block footer %}
+    &copy; 2020-<?php echo date("Y");?>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/chart.min.js') }}"></script>
+    <script src="{{ asset('js/myCharts.js') }}"></script>
+{% endblock %}
